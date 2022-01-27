@@ -3,7 +3,8 @@
 
 #include <string>
 
-namespace util::encoding {
+namespace util {
+namespace encoding {
 
 namespace {
 struct HmacCtx
@@ -56,5 +57,6 @@ std::string string_to_hex(unsigned char* data, std::size_t len)
         s[2 * i + 1] = hexmap[data[i] & 0x0F];
     }
     return s;
+}
 }
 }

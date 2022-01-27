@@ -7,7 +7,9 @@ using json = nlohmann::json;
 
 int main()
 {
-    ftx::WSClient client;
+    std::string key = "";
+    std::string secret = "";
+    ftx::WSClient client(key, secret);
     client.subscribe_orders("BTC-PERP");
     client.subscribe_orderbook("BTC-PERP");
     client.subscribe_ticker("BTC-PERP");

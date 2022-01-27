@@ -3,12 +3,20 @@
 #include "util/Time.h"
 #include <utility>
 
-namespace encoding = util::encoding;
+//namespace encoding = util::encoding;
+using namespace util;
 
 namespace ftx {
 
 WSClient::WSClient()
 {
+    ws.configure(uri, api_key, api_secret, subaccount_name);
+    ws.set_on_open_cb([this]() { return this->on_open(); });
+}
+
+WSClient::WSClient(const std::string& key, const std::string& secret) {
+    api_key = key;
+    api_secret = secret;
     ws.configure(uri, api_key, api_secret, subaccount_name);
     ws.set_on_open_cb([this]() { return this->on_open(); });
 }
@@ -41,7 +49,9 @@ std::vector<json> WSClient::on_open()
         msgs.push_back(msg);
     }
 
-    for (auto& [market, channel] : subscriptions) {
+    for (auto& pair : subscriptions) {
+auto& market = pair.first;
+auto& channel = pair.second;
         json msg = {
           {"op", "subscribe"}, {"channel", channel}, {"market", market}};
         msgs.push_back(msg);

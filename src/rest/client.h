@@ -12,6 +12,7 @@ class RESTClient
 {
   public:
     RESTClient();
+    RESTClient(const std::string& api_key, const std::string& api_secret);
 
     json list_futures();
 
@@ -51,10 +52,10 @@ class RESTClient
 
   private:
     util::HTTPSession http_client;
-    const std::string uri = "ftx.com";
-    const std::string api_key = "";
-    const std::string api_secret = "";
-    const std::string subaccount_name = "";
+    const std::string uri = "ftx.com/api";
+    std::string api_key = "";
+    std::string api_secret = "";
+    std::string subaccount_name = "";
 };
 
 }

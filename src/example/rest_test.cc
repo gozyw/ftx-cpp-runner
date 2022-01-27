@@ -4,7 +4,9 @@
 
 int main()
 {
-    ftx::RESTClient client;
+    std::string key = "f4ZnOlIHgw7pOOGi6v8PSsueUjfWUBe9JVGgFSpf";
+    std::string secret = "Tw53GiVsodLAFAitxD0dvoKQtpGHpbRyJML_jD3_";
+    ftx::RESTClient client(key, secret);
 
     auto futs = client.list_futures();
     std::cout << futs << "\n";

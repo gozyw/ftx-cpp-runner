@@ -7,6 +7,12 @@ RESTClient::RESTClient()
     http_client.configure(uri, api_key, api_secret, subaccount_name);
 }
 
+RESTClient::RESTClient(const std::string& key, const std::string& secret) {
+    api_key = key;
+    api_secret = secret;
+    http_client.configure(uri, api_key, api_secret, subaccount_name);
+}
+
 json RESTClient::list_futures()
 {
     auto response = http_client.get("futures");
